@@ -25,7 +25,6 @@ class JobsController < ApplicationController
   end
 
   def edit
-    params[:status] = params[:status].to_i
     @job = Job.find(params[:id])
   end
 
