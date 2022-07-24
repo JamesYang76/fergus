@@ -1,0 +1,40 @@
+<h1><%= @job.name %></h1>
+<dl>
+  <dt>Due Date Time</dt>
+  <dd><%= @job.due_datetime %></dd>
+  <dt>Status</dt>
+  <dd><%= @job.status %></dd>
+  <dt>Client Name</dt>
+  <dd><%= @job.client_name %></dd>
+  <dt>Client Email</dt>
+  <dd><%= @job.client_email %></dd>
+  <dt>Client Mobile</dt>
+  <dd><%= @job.client_mobile %></dd>
+</dl>
+
+<h2>Notes</h2>
+<h3>Add a comment:</h3>
+<%= render 'notes/form' %>
+
+<table>
+  <tr>
+    <th>Commenter</th>
+    <th>Content</th>
+    <th>Updated Time</th>
+  </tr>
+  <% @job.notes.persisted.each do |note| %>
+    <tr>
+      <td><%= note.commenter %></td>
+      <td><%= note.body %></td>
+      <td><%= note.updated_at %></td>
+      <td><%= link_to "Edit", edit_job_note_path(@job, note)%></td>
+      <td>
+        <%= link_to "Destroy", [@job, note], data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  }
+        %>
+      </td>
+    </tr>
+  <% end %>
+</table>

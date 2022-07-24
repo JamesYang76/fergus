@@ -1,0 +1,35 @@
+<h1>Jobs List</h1>
+
+<%= link_to "New Job", new_job_path %>
+<br>
+<br>
+<%= form_with(url: jobs_path, method: :get) do %>
+  <%= label_tag(:search, "Search for:") %>
+  <%= text_field_tag(:search, params[:search]) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<table>
+  <tr>
+    <th><%= sort_link(column: "id", label: "ID")%></th>
+    <th><%= sort_link(column: "name", label: "Name")%></th>
+    <th><%= sort_link(column: "status", label: "Status")%></th>
+    <th><%= sort_link(column: "due_datetime", label: "Due Date Time")%></th>
+  </tr>
+  <% @jobs.each do |job| %>
+    <tr>
+      <td><%= job.id%></td>
+      <td><%= job.name%></td>
+      <td><%=job.status %></td>
+      <td><%=job.due_datetime %></td>
+      <td><%= link_to "Details", job %></td>
+      <td><%= link_to "Edit", edit_job_path(job) %></td>
+      <td>
+        <%= link_to "Destroy", job_path(job), data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+        } %>
+      </td>
+    </tr>
+  <% end %>
+</table>

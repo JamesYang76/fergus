@@ -1,0 +1,53 @@
+<%= form_with model: job do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+    <% job.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :due_datetime %><br>
+    <%= form.datetime_local_field :due_datetime %>
+    <% job.errors.full_messages_for(:due_datetime).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :status %><br>
+    <%= form.select :status, Job.statuses.keys %>
+    <% job.errors.full_messages_for(:status).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :client_name %><br>
+    <%= form.text_field :client_name %>
+    <% job.errors.full_messages_for(:client_name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :client_email %><br>
+    <%= form.text_field :client_email %>
+    <% job.errors.full_messages_for(:client_email).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :client_mobile %><br>
+    <%= form.text_field :client_mobile %>
+    <% job.errors.full_messages_for(:client_mobile).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
