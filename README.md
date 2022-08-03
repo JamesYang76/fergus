@@ -10,8 +10,8 @@ You do not need to install `Ruby on Rails and Postgres`, only `Docker` is requir
 ## How to Setup
 ```bash
 docker compose up -d
-docker compose run web rake db:create
-docker compose run web rake db:migrate
+docker compose run --rm web rake db:create
+docker compose run --rm web rake db:migrate
 ```
 Then, you can access http://localhost:3000/
 
